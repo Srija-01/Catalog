@@ -1,7 +1,5 @@
-Secret Finder
-A Java program that computes the constant term 
-𝑐
-c of a polynomial using the Lagrange interpolation method. This program accepts input in JSON format and supports parsing with either the org.json or Gson library.
+#Secret Finder
+A Java program that computes the constant term c of a polynomial using the Lagrange interpolation method. This program accepts input in JSON format and supports parsing with either the org.json or Gson library.
 
 Setup and Installation
 Option 1: Using Maven
@@ -39,8 +37,8 @@ Add the JAR in the dependencies section.
 For Command Line: Use the -cp option to include the JAR during compilation:
 sh
 Copy code
-javac -cp json-20210307.jar Secret.java
-java -cp .:json-20210307.jar Secret
+javac -cp json-20210307.jar SecretFinder.java
+java -cp .:json-20210307.jar SecretFinder
 How to Use
 Input Format
 The program accepts a JSON object as input. The structure includes:
@@ -56,7 +54,7 @@ value: Encoded
 y-value.
 Example Input
 json
-Copy code
+```
 {
   "keys": {
     "n": 4,
@@ -79,6 +77,7 @@ Copy code
     "value": "213"
   }
 }
+```
 Running the Program
 Compile the program:
 sh
@@ -90,27 +89,25 @@ Copy code
 java SecretFinder
 Provide the JSON input when prompted.
 How It Works
-Input Parsing:
-
+1. Input Parsing
 Parses the JSON input using org.json or Gson.
 Decodes 
 𝑦
 y-values using their respective bases.
-Lagrange Interpolation:
-
+2. Lagrange Interpolation
 Computes the constant term 
 𝑐
 c of the polynomial using modular arithmetic.
 Avoids modular inversion errors with a prime modulus.
-Output:
-
+3. Output
 Displays the calculated constant term.
 Error Handling
 The program gracefully handles cases where the modular inverse cannot be computed and displays an appropriate error message.
 Ensure the input JSON is well-formed and all necessary keys (n, k, base, value) are provided.
 Complete Code
+SecretFinder.java
 java
-Copy code
+```
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -118,7 +115,6 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
-
 public class SecretFinder {
 
     public static void main(String[] args) {
@@ -175,6 +171,7 @@ public class SecretFinder {
         return result;
     }
 }
+```
 Notes
 Replace org.json operations with Gson equivalents for simplicity and flexibility.
 Use modular arithmetic carefully to avoid runtime exceptions.
